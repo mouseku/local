@@ -1,6 +1,5 @@
 "set background=dark
 set background=light
-
 " Plugins will be downloaded under the specified directory.
 
 call plug#begin('~/.vim/plugged')
@@ -25,6 +24,8 @@ Plug 'nathanaelkane/vim-indent-guides'
 Plug 'blueyed/vim-diminactive'
 Plug 'nanotech/jellybeans.vim', {'tag':'v1.7'}
 Plug 'mhinz/vim-startify'
+Plug 'ervandew/supertab'
+Plug 'valloric/youcompleteme'
 
 " List ends here. Plugins become visible to Vim after this call.
 
@@ -86,6 +87,12 @@ endif
 " 而щ윭 ?ㅽ궡 ?ъ슜
 colorscheme jellybeans
 
+let python_highlight_all = 1
+let g:pydiction_location='~/.vim/pydiction/complete-dict'
+
+
+
+imap <F5> <Esc>:w<CR>:!clear;python %<CR>
 
 " for taglist
 nmap <F8> :Tagbar<CR>
@@ -117,7 +124,6 @@ filetype plugin on
 
 let mapleader=","
 
-map <Leader>nt <ESC>:NERDTreeToggle<cr>
 set timeout timeoutlen=1500
 
 
