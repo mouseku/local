@@ -12,7 +12,7 @@ Plug 'heavenshell/vim-jsdoc'
 Plug 'junegunn/vim-easy-align'
 Plug 'majutsushi/tagbar'
 Plug 'tpope/vim-fugitive'
-Plug 'scrooloose/nerdtree', {'on' : 'NERDTreeToggle'}
+Plug 'scrooloose/nerdtree'
 Plug 'tpope/vim-repeat'
 Plug 'airblade/vim-gitgutter'
 Plug 'kien/ctrlp.vim'
@@ -25,12 +25,13 @@ Plug 'blueyed/vim-diminactive'
 Plug 'nanotech/jellybeans.vim', {'tag':'v1.7'}
 Plug 'mhinz/vim-startify'
 Plug 'ervandew/supertab'
+Plug 'scrooloose/syntastic'
 Plug 'valloric/youcompleteme'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " List ends here. Plugins become visible to Vim after this call.
 
 call plug#end()
-
 
 filetype indent on " indent.vim 파일에 설정된 파일 형식별 들여쓰기 적용
 set showcmd " 사용자가 입력한 명령어 표시
@@ -69,7 +70,7 @@ set clipboard=unnamed " vim에서 복사한 내용이 클립보드에 저장
 set backspace=eol,start,indent " 라인의 시작과 끝의 들여쓰기를 백스페이스로 지움.
 set paste " 다른 곳에서 복사한 내용을 붙여넣을 때, 자동 들여쓰기가 적용되는 것을 막아 복사한 내용을 들여쓰기없이 복사
 set pastetoggle=<F2> " paste 옵션이 적용되면 들여쓰기가 옵션이 제대로 작동하지 않기 때문에 토글 형식으로 사용 할 수 있게 함.
-
+set encoding=utf-8
 
 " 留덉?留됱쑝濡??섏젙??怨녹뿉 而ㅼ꽌瑜??꾩튂??
 au BufReadPost *
@@ -89,8 +90,7 @@ colorscheme jellybeans
 
 let python_highlight_all = 1
 let g:pydiction_location='~/.vim/pydiction/complete-dict'
-
-
+autocmd vimenter * silent! lcd %:p:h
 
 imap <F5> <Esc>:w<CR>:!clear;python %<CR>
 
@@ -116,6 +116,8 @@ nnoremap <leader>w :bn<CR>
 " for blueyed/vim-diminactive
 let g:diminactive_enable_focus = 1
 
+:let &pythonthreedll = 'C:\Users\mouse\AppData\Local\Programs\Python\Python36\python36.dll'
+
 set laststatus=2 " turn on bottom bar
 
 filetype plugin on
@@ -137,7 +139,8 @@ let g:ctrlp_match_window = 'results:20'
 "===============
 "Key mapping
 "===============
-
+noremap <Leader>bmh :OpenBookmark home<CR> 
+noremap <Leader>bmc :OpenBookmark c<CR> 
 noremap <C-h> <C-w>h
 noremap <C-j> <C-w>j
 noremap <C-k> <C-w>k
@@ -149,9 +152,8 @@ nnoremap <Leader>nt :NERDTreeToggle<CR>
 " Tree 아이콘 변경
 let g:NERDTreeDirArrowExpandable = '?'
 let g:NERDTreeDirArrowCollapsible = '?'
-" 파일없이 vim만 틸 경우 자동으로 NERD Tree 실행.
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+" 파일없이 vim만 틸 경우 자동으로 NERD Tree 실행
 " 디렉토리를 vim으로 여는 경우 NERD Tree 실행.
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
+
